@@ -76,19 +76,19 @@ function App() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.map((row) => {
+                {rows.map((row, rowIndex) => {
                   return (
                     <TableRow
                       hover
                       role="checkbox"
                       tabIndex={-1}
-                      key={row.country}
+                      key={`${row.country}-${rowIndex}-row`}
                     >
-                      {splitDataHeader.map((column) => {
+                      {splitDataHeader.map((column, columnIndex) => {
                         const value = row[column as keyof TData];
 
                         return (
-                          <TableCell key={row.country}>
+                          <TableCell key={`${row.country}-${columnIndex}-cell`}>
                             {value}
                             {column === "rate" ? " CZK" : null}
                           </TableCell>
