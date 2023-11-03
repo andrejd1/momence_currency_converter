@@ -3,6 +3,7 @@ import { createData } from "../utils/helpers";
 export function useExchangeRateData(data: string) {
   const splitData: string[] = data.split("\n");
   const splitDataHeader: string[] = splitData[1].toLowerCase().split("|");
+  const date: string = splitData[0];
   const splitDataWithoutHeader: string[] = [...splitData];
   splitDataWithoutHeader.splice(0, 2);
   // remove last empty line
@@ -22,6 +23,7 @@ export function useExchangeRateData(data: string) {
     });
 
   return {
+    date: date,
     headerItems: splitDataHeader,
     rows: rows,
   };

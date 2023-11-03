@@ -1,13 +1,14 @@
 import { TableHeaderProps } from "../../../types/table";
-import { TableCell, TableHead, TableRow } from "@mui/material";
+import { TableHead, TableRow } from "@mui/material";
 import React from "react";
+import CustomTableCell from "../TableCell/TableCell";
 
-const TableHeader = (props: TableHeaderProps) => {
+const TableHeader = ({ headerItems }: TableHeaderProps) => {
   return (
     <TableHead>
       <TableRow>
-        {props.headerItems.map((item) => (
-          <TableCell key={item}>{item.toUpperCase()}</TableCell>
+        {headerItems.map((item) => (
+          <CustomTableCell key={item}>{item.toUpperCase()}</CustomTableCell>
         ))}
       </TableRow>
     </TableHead>
