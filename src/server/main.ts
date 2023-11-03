@@ -4,7 +4,7 @@ import request from "request";
 
 const app = express();
 
-app.get("/daily", (req: Request, res: Response) => {
+app.get("/exchange/rates", (req: Request, res: Response) => {
   request(
     {
       url: "https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt",
