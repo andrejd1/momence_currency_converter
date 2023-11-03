@@ -4,6 +4,7 @@ import TableHeader from "./TableHead/TableHead";
 import { TableProps, TData } from "../../types/table";
 import CustomTableCell from "./TableCell/TableCell";
 import CustomTableRow from "./TableRow/TableRow";
+import { renderCountryFlag } from "../../utils/converters";
 
 const ExchangeRateTable = ({ date, headerItems, rows }: TableProps) => {
   return (
@@ -25,8 +26,11 @@ const ExchangeRateTable = ({ date, headerItems, rows }: TableProps) => {
                         <CustomTableCell
                           key={`${row.country}-${columnIndex}-cell`}
                         >
+                          {column === "country" &&
+                            typeof value === "string" &&
+                            renderCountryFlag(value)}
                           {value}
-                          {column === "rate" ? " CZK" : null}
+                          {column === "rate" && " CZK"}
                         </CustomTableCell>
                       );
                     })}

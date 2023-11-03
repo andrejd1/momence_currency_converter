@@ -20,3 +20,8 @@ export type TableProps = {
   date: string;
   rows: TData[];
 } & TableHeaderProps;
+
+export type TFlags = {
+  name: string;
+  flag: string;
+};
