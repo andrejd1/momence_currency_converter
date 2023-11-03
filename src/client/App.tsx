@@ -88,7 +88,7 @@ function App() {
                         const value = row[column as keyof TData];
 
                         return (
-                          <TableCell key={row.code}>
+                          <TableCell key={row.country}>
                             {value}
                             {column === "rate" ? " CZK" : null}
                           </TableCell>
