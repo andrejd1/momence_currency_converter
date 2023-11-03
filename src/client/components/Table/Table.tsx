@@ -5,10 +5,11 @@ import { TableProps, TData } from "../../types/table";
 import CustomTableCell from "./TableCell/TableCell";
 import CustomTableRow from "./TableRow/TableRow";
 import { renderCountryFlag } from "../../utils/converters";
+import { StyledTableContainer } from "./Table.styled";
 
 const ExchangeRateTable = ({ date, headerItems, rows }: TableProps) => {
   return (
-    <>
+    <StyledTableContainer>
       <h1>Exchange Rate Table</h1>
       <p>Last Update: {date}</p>
       <Paper sx={{ width: "100%", overflow: "hidden" }}>
@@ -41,7 +42,7 @@ const ExchangeRateTable = ({ date, headerItems, rows }: TableProps) => {
           </Table>
         </TableContainer>
       </Paper>
-    </>
+    </StyledTableContainer>
   );
 };
 

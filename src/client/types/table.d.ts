@@ -8,6 +8,10 @@ export type TData = {
   rate: number;
 };
 
+export type TConverterFormValues = {
+  czk_amount: number;
+} & TData;
+
 export type TableHeaderProps = {
   headerItems: string[];
 };
@@ -24,4 +28,5 @@ export type TableProps = {
 export type TFlags = {
   name: string;
   flag: string;
+  code: string;
 };

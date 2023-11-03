@@ -5,6 +5,8 @@ import ExchangeRateTable from "./components/Table/Table";
 import { createTheme, ThemeProvider, useMediaQuery } from "@mui/material";
 import { useQuery } from "react-query";
 import axios from "axios";
+import Converter from "./components/Converter/Converter";
+import { StyledAppContainer } from "./App.styled";
 
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -28,7 +30,10 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <ExchangeRateTable date={date} headerItems={headerItems} rows={rows} />
+      <StyledAppContainer>
+        <Converter />
+        <ExchangeRateTable date={date} headerItems={headerItems} rows={rows} />
+      </StyledAppContainer>
     </ThemeProvider>
   );
 }
