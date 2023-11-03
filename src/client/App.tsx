@@ -82,7 +82,7 @@ function App() {
                       hover
                       role="checkbox"
                       tabIndex={-1}
-                      key={row.code}
+                      key={row.country}
                     >
                       {splitDataHeader.map((column) => {
                         const value = row[column as keyof TData];
