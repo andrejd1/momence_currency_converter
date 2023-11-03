@@ -8,6 +8,10 @@ export const StyledConverterContainer = styled.div`
   max-width: 20rem;
   width: 100%;
 
+  input {
+    text-align: center;
+  }
+
   @media screen and (max-width: 900px) {
     align-self: center;
     padding: 0 2rem 2rem;

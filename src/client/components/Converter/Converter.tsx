@@ -35,7 +35,7 @@ const Converter = ({ selectedCurrency }: ConverterFormProps) => {
       <Grid container spacing={3}>
         <Grid item xs={12} md={12}>
           <TextFieldComponent
-            label={"Amount (Czech)"}
+            label={"Amount (CZK)"}
             type={"number"}
             register={register("czk_amount", {
               pattern: {
