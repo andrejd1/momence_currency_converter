@@ -2,12 +2,15 @@ import React from "react";
 import { Grid, MenuItem, SelectChangeEvent } from "@mui/material";
 import TextFieldComponent from "../TextField/TextField";
 import SelectField from "../SelectField/SelectField";
-import { TConverterFormValues } from "../../types/table";
 import { useForm } from "react-hook-form";
 import { FLAGS } from "../../utils/enums";
 import { StyledConverterContainer } from "./Converter.styled";
+import {
+  ConverterFormProps,
+  TConverterFormValues,
+} from "../../types/converter";
 
-const Converter = () => {
+const Converter = ({ selectedCurrency }: ConverterFormProps) => {
   const {
     register,
     formState: { errors },
@@ -17,6 +20,14 @@ const Converter = () => {
   const onCodeChange = (event: SelectChangeEvent) => {
     setValue("code", event.target.value);
   };
+
+  if (!selectedCurrency)
+    return (
+      <StyledConverterContainer>
+        <h1>Currency Converter</h1>
+        <p>Can't load the converter :(</p>
+      </StyledConverterContainer>
+    );
 
   return (
     <StyledConverterContainer>
@@ -32,6 +43,7 @@ const Converter = () => {
                 message: "Your input is NaN.",
               },
             })}
+            defaultValue={selectedCurrency.rate.toString()}
             error={Boolean(errors.czk_amount)}
             errorMessage={errors.czk_amount?.message}
           />
@@ -44,7 +56,7 @@ const Converter = () => {
                 {`${option.flag} ${option.code}`}
               </MenuItem>
             ))}
-            defaultValue={FLAGS[0].code}
+            defaultValue={selectedCurrency.code}
             {...register("code")}
             error={errors.code}
             onChange={onCodeChange}
@@ -60,7 +72,7 @@ const Converter = () => {
                 message: "Your input is NaN.",
               },
             })}
-            defaultValue={"1"}
+            defaultValue={selectedCurrency.amount.toString()}
             error={Boolean(errors.amount)}
             errorMessage={errors.amount?.message}
           />
