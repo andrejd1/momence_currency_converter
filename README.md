@@ -27,7 +27,7 @@ Or yarn if you used it for installation.
 yarn dev
 ```
 ## Tech stack
-[React](https://react.dev/), [Typescript](https://www.typescriptlang.org/), [Vite](https://vitejs.dev/), [Express](https://expressjs.com/), [MUI](https://mui.com/), [react-hook-form](https://react-hook-form.com/), [axios](https://github.com/axios/axios), [Tanstack Query](https://tanstack.com/)
+[React](https://react.dev/), [Typescript](https://www.typescriptlang.org/), [Vite](https://vitejs.dev/), [Express](https://expressjs.com/), [MUI](https://mui.com/), [react-hook-form](https://react-hook-form.com/), [axios](https://github.com/axios/axios), [Tanstack Query](https://tanstack.com/), [ESLint](https://eslint.org/), [Prettier](https://prettier.io/)
 
 ## Deployment
 The project is deployed to [vercel](https://momence-currency-converter.vercel.app/).
