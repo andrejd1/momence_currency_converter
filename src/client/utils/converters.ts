@@ -1,4 +1,4 @@
-import { FLAGS } from "./enums";
+import { FLAGS } from "./constants";
 
 export const renderCountryFlag = (country: string) => {
   const flag = FLAGS.find((flag) => flag.name === country);

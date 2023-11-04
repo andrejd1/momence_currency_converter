@@ -10,7 +10,7 @@ import { StyledTableContainer } from "./Table.styled";
 const ExchangeRateTable = ({ date, headerItems, rows }: TableProps) => {
   return (
     <StyledTableContainer>
-      <h1>Exchange Rate Table</h1>
+      <h1>Exchange Rate</h1>
       <p>Last Update: {date}</p>
       <Paper sx={{ width: "100%", overflow: "hidden" }}>
         <TableContainer sx={{ maxHeight: "60vh" }}>

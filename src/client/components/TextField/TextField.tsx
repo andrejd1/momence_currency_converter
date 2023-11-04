@@ -1,6 +1,7 @@
 import React from "react";
 import { FormHelperText, TextField } from "@mui/material";
 import { UseFormRegisterReturn } from "react-hook-form";
+import { colors } from "../../theme/colors";
 
 type TTextFieldProps = {
   label: string;
@@ -24,7 +25,7 @@ const TextFieldComponent: React.FC<TTextFieldProps> = React.forwardRef<
         <TextField
           type={type}
           InputProps={type === "number" ? { inputProps: { min: 0 } } : {}}
-          sx={{ width: "100%" }}
+          fullWidth
           inputRef={ref}
           defaultValue={defaultValue}
           label={label}
@@ -33,7 +34,7 @@ const TextFieldComponent: React.FC<TTextFieldProps> = React.forwardRef<
           {...register}
         />
         {error && (
-          <FormHelperText sx={{ color: "#D32F2F" }}>
+          <FormHelperText sx={{ color: colors.danger }}>
             {errorMessage}
           </FormHelperText>
         )}

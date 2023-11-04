@@ -27,8 +27,6 @@ function App() {
 
   if (error) return <div>Failed to load...</div>;
 
-  if (!data) return <div>There's no data! :(</div>;
-
   const { date, headerItems, rows } = useExchangeRateData(data);
 
   return (

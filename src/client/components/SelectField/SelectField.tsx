@@ -7,6 +7,7 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { FieldError } from "react-hook-form";
+import { colors } from "../../theme/colors";
 
 type TSelectFieldProps = {
   label: string;
@@ -44,7 +45,7 @@ const SelectField: React.FC<TSelectFieldProps> = React.forwardRef<
           {options}
         </Select>
         {error && (
-          <FormHelperText sx={{ color: "#D32F2F" }}>
+          <FormHelperText sx={{ color: colors.danger }}>
             {error.message}
           </FormHelperText>
         )}

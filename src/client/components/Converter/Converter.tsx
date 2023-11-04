@@ -3,7 +3,7 @@ import { Grid, MenuItem, SelectChangeEvent } from "@mui/material";
 import TextFieldComponent from "../TextField/TextField";
 import SelectField from "../SelectField/SelectField";
 import { useForm } from "react-hook-form";
-import { FLAGS } from "../../utils/enums";
+import { FLAGS } from "../../utils/constants";
 import { StyledConverterContainer } from "./Converter.styled";
 import {
   ConverterFormProps,
