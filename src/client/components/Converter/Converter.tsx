@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, MenuItem, SelectChangeEvent } from "@mui/material";
 import TextFieldComponent from "../TextField/TextField";
 import SelectField from "../SelectField/SelectField";
@@ -9,53 +9,43 @@ import {
   ConverterFormProps,
   TConverterFormValues,
 } from "../../types/converter";
+import { TData } from "../../types/table";
 
-const Converter = ({
-  rows,
-  selectedCurrency,
-  setSelectedCurrency,
-}: ConverterFormProps) => {
+const Converter = ({ rows }: ConverterFormProps) => {
   const {
     register,
     formState: { errors },
     setValue,
   } = useForm<TConverterFormValues>();
+  const [selectedCurrency, setSelectedCurrency] = useState<TData>(rows[0]);
+
+  useEffect(() => {
+    setValue("amount", selectedCurrency.amount);
+    setValue("czk_amount", selectedCurrency.rate);
+  }, [selectedCurrency]);
 
   const onCodeChange = (event: SelectChangeEvent) => {
-    setValue("code", event.target.value);
     const newSelectedCurrency = rows.find(
       (row) => row.code === event.target.value,
     );
     if (newSelectedCurrency) {
-      setValue("amount", newSelectedCurrency.amount);
-      setValue("czk_amount", newSelectedCurrency.rate);
       setSelectedCurrency(newSelectedCurrency);
-    }
-  };
-
-  const onCZKAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const amount = parseFloat(event.target.value);
-    if (selectedCurrency) {
-      const czk_amount = amount * selectedCurrency.rate;
-      setValue("czk_amount", czk_amount);
+      setValue("code", event.target.value);
     }
   };
 
   const onAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const CZKAmount = parseFloat(event.target.value);
-    if (selectedCurrency) {
-      const amount = CZKAmount / selectedCurrency.rate;
-      setValue("amount", amount);
-    }
+    const amount = parseFloat(event.target.value);
+    const czkAmountPerUnit = selectedCurrency.rate / selectedCurrency.amount;
+    const czkAmount = amount * czkAmountPerUnit;
+    setValue("czk_amount", czkAmount);
   };
 
-  if (!selectedCurrency)
-    return (
-      <StyledConverterContainer>
-        <h1>Currency Converter</h1>
-        <p>Can't load the converter :(</p>
-      </StyledConverterContainer>
-    );
+  const onCZKAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const CZKAmount = parseFloat(event.target.value);
+    const amount = CZKAmount / selectedCurrency.rate;
+    setValue("amount", amount);
+  };
 
   return (
     <StyledConverterContainer>
@@ -66,7 +56,7 @@ const Converter = ({
             label={"Amount"}
             type={"number"}
             register={register("amount", {
-              onChange: onCZKAmountChange,
+              onChange: onAmountChange,
               pattern: {
                 value: /^[0-9.]+$/,
                 message: "Your input is NaN.",
@@ -96,7 +86,7 @@ const Converter = ({
             label={"Amount (CZK)"}
             type={"number"}
             register={register("czk_amount", {
-              onChange: onAmountChange,
+              onChange: onCZKAmountChange,
               pattern: {
                 value: /^[0-9.]+$/,
                 message: "Your input is NaN.",

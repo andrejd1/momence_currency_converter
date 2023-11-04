@@ -6,6 +6,4 @@ export type TConverterFormValues = {
 
 export type ConverterFormProps = {
   rows: TData[];
-  selectedCurrency: TData | undefined;
-  setSelectedCurrency: (data: TData | undefined) => void;
 };
