@@ -1,17 +1,17 @@
 import { createData } from "../utils/helpers";
 
 export function useExchangeRateData(data: string) {
-  const splitData: string[] = data.split("\n");
-  const splitDataHeader: string[] = splitData[1].toLowerCase().split("|");
-  const date: string = splitData[0];
-  const splitDataWithoutHeader: string[] = [...splitData];
-  splitDataWithoutHeader.splice(0, 2);
+  const parsedData: string[] = data.split("\n");
+  const headerItems: string[] = parsedData[1].toLowerCase().split("|");
+  const date: string = parsedData[0];
+  const parsedDataWithoutHeader: string[] = [...parsedData];
+  parsedDataWithoutHeader.splice(0, 2);
   // remove last empty line
-  splitDataWithoutHeader.splice(splitDataWithoutHeader.length - 1, 1);
+  parsedDataWithoutHeader.splice(parsedDataWithoutHeader.length - 1, 1);
 
   const rows =
-    splitDataWithoutHeader &&
-    splitDataWithoutHeader.map((row) => {
+    parsedDataWithoutHeader &&
+    parsedDataWithoutHeader.map((row) => {
       const cells = row.split("|");
       return createData(
         cells[0],
@@ -24,7 +24,7 @@ export function useExchangeRateData(data: string) {
 
   return {
     date: date,
-    headerItems: splitDataHeader,
+    headerItems: headerItems,
     rows: rows,
   };
 }
