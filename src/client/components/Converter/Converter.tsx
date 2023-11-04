@@ -10,7 +10,11 @@ import {
   TConverterFormValues,
 } from "../../types/converter";
 
-const Converter = ({ selectedCurrency }: ConverterFormProps) => {
+const Converter = ({
+  rows,
+  selectedCurrency,
+  setSelectedCurrency,
+}: ConverterFormProps) => {
   const {
     register,
     formState: { errors },
@@ -19,6 +23,30 @@ const Converter = ({ selectedCurrency }: ConverterFormProps) => {
 
   const onCodeChange = (event: SelectChangeEvent) => {
     setValue("code", event.target.value);
+    const newSelectedCurrency = rows.find(
+      (row) => row.code === event.target.value,
+    );
+    if (newSelectedCurrency) {
+      setValue("amount", newSelectedCurrency.amount);
+      setValue("czk_amount", newSelectedCurrency.rate);
+      setSelectedCurrency(newSelectedCurrency);
+    }
+  };
+
+  const onCZKAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const amount = parseFloat(event.target.value);
+    if (selectedCurrency) {
+      const czk_amount = amount * selectedCurrency.rate;
+      setValue("czk_amount", czk_amount);
+    }
+  };
+
+  const onAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const CZKAmount = parseFloat(event.target.value);
+    if (selectedCurrency) {
+      const amount = CZKAmount / selectedCurrency.rate;
+      setValue("amount", amount);
+    }
   };
 
   if (!selectedCurrency)
@@ -35,22 +63,23 @@ const Converter = ({ selectedCurrency }: ConverterFormProps) => {
       <Grid container spacing={3}>
         <Grid item xs={12} md={12}>
           <TextFieldComponent
-            label={"Amount (CZK)"}
+            label={"Amount"}
             type={"number"}
-            register={register("czk_amount", {
+            register={register("amount", {
+              onChange: onCZKAmountChange,
               pattern: {
-                value: /^\d$/,
+                value: /^[0-9.]+$/,
                 message: "Your input is NaN.",
               },
             })}
-            defaultValue={selectedCurrency.rate.toString()}
-            error={Boolean(errors.czk_amount)}
-            errorMessage={errors.czk_amount?.message}
+            defaultValue={selectedCurrency.amount.toString()}
+            error={Boolean(errors.amount)}
+            errorMessage={errors.amount?.message}
           />
         </Grid>
         <Grid item xs={12} md={12}>
           <SelectField
-            label={"Currency"}
+            label={`Currency (${selectedCurrency.rate} CZK)`}
             options={FLAGS.map((option) => (
               <MenuItem key={option.name} value={option.code}>
                 {`${option.flag} ${option.code}`}
@@ -64,17 +93,18 @@ const Converter = ({ selectedCurrency }: ConverterFormProps) => {
         </Grid>
         <Grid item xs={12} md={12}>
           <TextFieldComponent
-            label={"Amount"}
+            label={"Amount (CZK)"}
             type={"number"}
-            register={register("amount", {
+            register={register("czk_amount", {
+              onChange: onAmountChange,
               pattern: {
-                value: /^\d$/,
+                value: /^[0-9.]+$/,
                 message: "Your input is NaN.",
               },
             })}
-            defaultValue={selectedCurrency.amount.toString()}
-            error={Boolean(errors.amount)}
-            errorMessage={errors.amount?.message}
+            defaultValue={selectedCurrency.rate.toString()}
+            error={Boolean(errors.czk_amount)}
+            errorMessage={errors.czk_amount?.message}
           />
         </Grid>
       </Grid>

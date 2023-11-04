@@ -36,6 +36,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <StyledAppContainer>
         <Converter
+          rows={rows}
           selectedCurrency={selectedCurrency ?? defaultCurrency}
           setSelectedCurrency={setSelectedCurrency}
         />

@@ -1,21 +1,21 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode } from "react";
 import {
   FormControl,
   FormHelperText,
   InputLabel,
   Select,
   SelectChangeEvent,
-} from '@mui/material'
-import { FieldError } from 'react-hook-form'
+} from "@mui/material";
+import { FieldError } from "react-hook-form";
 
 type TSelectFieldProps = {
-  label: string
-  name: string
-  error?: FieldError
-  options: ReactNode
-  readonly defaultValue?: string
-  readonly onChange: (event: SelectChangeEvent) => void
-}
+  label: string;
+  name: string;
+  error?: FieldError;
+  options: ReactNode;
+  readonly defaultValue?: string;
+  readonly onChange: (event: SelectChangeEvent) => void;
+};
 
 const SelectField: React.FC<TSelectFieldProps> = React.forwardRef<
   HTMLSelectElement,
@@ -23,11 +23,11 @@ const SelectField: React.FC<TSelectFieldProps> = React.forwardRef<
 >(
   (
     { label, name, error, onChange, options, defaultValue },
-    ref
+    ref,
   ): React.JSX.Element => {
     return (
-      <FormControl sx={{ width: '100%' }}>
-        <InputLabel id={name} size={'small'}>
+      <FormControl fullWidth>
+        <InputLabel id={name} size={"small"}>
           {label}
         </InputLabel>
         <Select
@@ -44,13 +44,13 @@ const SelectField: React.FC<TSelectFieldProps> = React.forwardRef<
           {options}
         </Select>
         {error && (
-          <FormHelperText sx={{ color: '#D32F2F' }}>
+          <FormHelperText sx={{ color: "#D32F2F" }}>
             {error.message}
           </FormHelperText>
         )}
       </FormControl>
-    )
-  }
-)
+    );
+  },
+);
 
-export default SelectField
+export default SelectField;
