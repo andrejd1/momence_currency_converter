@@ -5,8 +5,8 @@ import request from "request";
 const app = express();
 ViteExpress.config({
   mode:
-    process.env.NODE_ENV === "production"
-      ? process.env.NODE_ENV
+    process.env.VITE_VERCEL_ENV === "production"
+      ? process.env.VITE_VERCEL_ENV
       : "development",
 });
 
