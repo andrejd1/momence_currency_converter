@@ -23,6 +23,7 @@ const TextFieldComponent: React.FC<TTextFieldProps> = React.forwardRef<
       <>
         <TextField
           type={type}
+          InputProps={type === "number" ? { inputProps: { min: 0 } } : {}}
           sx={{ width: "100%" }}
           inputRef={ref}
           defaultValue={defaultValue}
