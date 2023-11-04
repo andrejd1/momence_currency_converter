@@ -10,6 +10,7 @@ import {
   TConverterFormValues,
 } from "../../types/converter";
 import { TData } from "../../types/table";
+import { roundNumber } from "../../utils/converters";
 
 const Converter = ({ rows }: ConverterFormProps) => {
   const {
@@ -37,13 +38,13 @@ const Converter = ({ rows }: ConverterFormProps) => {
   const onAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const amount = parseFloat(event.target.value);
     const czkAmountPerUnit = selectedCurrency.rate / selectedCurrency.amount;
-    const czkAmount = amount * czkAmountPerUnit;
+    const czkAmount = roundNumber(amount * czkAmountPerUnit, 3);
     setValue("czk_amount", czkAmount);
   };
 
   const onCZKAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const CZKAmount = parseFloat(event.target.value);
-    const amount = CZKAmount / selectedCurrency.rate;
+    const amount = roundNumber(CZKAmount / selectedCurrency.rate, 3);
     setValue("amount", amount);
   };
 
