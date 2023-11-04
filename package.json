@@ -8,6 +8,8 @@
     "build": "vite build"
   },
   "dependencies": {
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1",
     "eslint": "^8.52.0",
     "express": "^4.18.2",
     "prettier": "^3.0.3",
@@ -15,9 +17,11 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",
     "react-query": "^3.39.3",
+    "request": "^2.88.2",
     "styled-components": "^6.1.0",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.3",
+    "vite": "^4.0.4",
     "vite-express": "*"
   },
   "devDependencies": {
@@ -30,11 +34,8 @@
     "@types/react-dom": "^18.0.10",
     "@types/request": "^2.48.11",
     "@vitejs/plugin-react": "^3.0.1",
-    "axios": "^1.6.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "nodemon": "^2.0.20",
-    "request": "^2.88.2",
-    "vite": "^4.0.4"
+    "nodemon": "^2.0.20"
   }
 }

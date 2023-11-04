@@ -3,8 +3,14 @@ import ViteExpress from "vite-express";
 import request from "request";
 
 const app = express();
+ViteExpress.config({
+  mode:
+    process.env.NODE_ENV === "production"
+      ? process.env.NODE_ENV
+      : "development",
+});
 
-app.get("/exchange/rates", (req: Request, res: Response) => {
+app.get("/exchange/rates", (_req: Request, res: Response) => {
   request(
     {
       url: "https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt",
