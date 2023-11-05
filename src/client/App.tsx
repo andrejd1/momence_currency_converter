@@ -7,6 +7,8 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import Converter from "./components/Converter/Converter";
 import { StyledAppContainer } from "./App.styled";
+import Loader from "./components/Loader/Loader";
+import Error from "./components/Error/Error";
 
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -23,9 +25,15 @@ function App() {
     axios.get("/exchange/rates").then((res) => res.data),
   );
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
 
-  if (error) return <div>Failed to load...</div>;
+  if (error)
+    return (
+      <Error
+        title={"Oh no! Failed to load data :("}
+        message={`We were unable to load the data...`}
+      />
+    );
 
   const { date, headerItems, rows } = useExchangeRateData(data);
 

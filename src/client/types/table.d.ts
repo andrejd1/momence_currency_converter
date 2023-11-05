@@ -28,3 +28,8 @@ export type TFlags = {
   flag: string;
   code: string;
 };
+
+export type ErrorProps = {
+  title: string;
+  message: string;
+};
