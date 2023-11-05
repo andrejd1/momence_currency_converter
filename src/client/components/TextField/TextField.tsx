@@ -8,6 +8,7 @@ type TTextFieldProps = {
   type: React.HTMLInputTypeAttribute;
   defaultValue?: string;
   register: UseFormRegisterReturn;
+  isPositiveNumber?: boolean;
   error?: boolean;
   errorMessage?: string;
 };
@@ -17,14 +18,26 @@ const TextFieldComponent: React.FC<TTextFieldProps> = React.forwardRef<
   TTextFieldProps
 >(
   (
-    { register, type, defaultValue, label, error, errorMessage },
+    {
+      register,
+      type,
+      defaultValue,
+      label,
+      error,
+      errorMessage,
+      isPositiveNumber,
+    },
     ref,
   ): React.JSX.Element => {
     return (
       <>
         <TextField
           type={type}
-          InputProps={type === "number" ? { inputProps: { min: 0 } } : {}}
+          InputProps={
+            type === "number" && isPositiveNumber
+              ? { inputProps: { min: 0 } }
+              : {}
+          }
           fullWidth
           inputRef={ref}
           defaultValue={defaultValue}

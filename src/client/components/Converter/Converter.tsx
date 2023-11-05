@@ -56,6 +56,7 @@ const Converter = ({ rows }: ConverterFormProps) => {
           <TextFieldComponent
             label={"Amount"}
             type={"number"}
+            isPositiveNumber={true}
             register={register("amount", {
               onChange: onAmountChange,
               pattern: {
@@ -86,6 +87,7 @@ const Converter = ({ rows }: ConverterFormProps) => {
           <TextFieldComponent
             label={"Amount (CZK)"}
             type={"number"}
+            isPositiveNumber={true}
             register={register("czk_amount", {
               onChange: onCZKAmountChange,
               pattern: {
