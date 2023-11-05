@@ -11,6 +11,8 @@ import {
 } from "../../types/converter";
 import { TData } from "../../types/table";
 import { roundNumber } from "../../utils/converters";
+import { StyledTitleText } from "../../App.styled";
+import CustomPaper from "../Paper/Paper";
 
 const Converter = ({ rows }: ConverterFormProps) => {
   const {
@@ -50,57 +52,59 @@ const Converter = ({ rows }: ConverterFormProps) => {
 
   return (
     <StyledConverterContainer>
-      <h1>Currency Converter</h1>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={12}>
-          <TextFieldComponent
-            label={"Amount"}
-            type={"number"}
-            isPositiveNumber={true}
-            register={register("amount", {
-              onChange: onAmountChange,
-              pattern: {
-                value: /^[0-9.]+$/,
-                message: "Your input is NaN.",
-              },
-            })}
-            defaultValue={selectedCurrency.amount.toString()}
-            error={Boolean(errors.amount)}
-            errorMessage={errors.amount?.message}
-          />
+      <StyledTitleText>Currency Converter</StyledTitleText>
+      <CustomPaper style={{ padding: "1rem" }}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={12}>
+            <TextFieldComponent
+              label={"Amount"}
+              type={"number"}
+              isPositiveNumber={true}
+              register={register("amount", {
+                onChange: onAmountChange,
+                pattern: {
+                  value: /^[0-9.]+$/,
+                  message: "Your input is NaN.",
+                },
+              })}
+              defaultValue={selectedCurrency.amount.toString()}
+              error={Boolean(errors.amount)}
+              errorMessage={errors.amount?.message}
+            />
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <SelectField
+              label={`Currency (${selectedCurrency.rate} CZK)`}
+              options={FLAGS.map((option) => (
+                <MenuItem key={option.name} value={option.code}>
+                  {`${option.flag} ${option.code}`}
+                </MenuItem>
+              ))}
+              defaultValue={selectedCurrency.code}
+              {...register("code")}
+              error={errors.code}
+              onChange={onCodeChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <TextFieldComponent
+              label={"Amount (CZK)"}
+              type={"number"}
+              isPositiveNumber={true}
+              register={register("czk_amount", {
+                onChange: onCZKAmountChange,
+                pattern: {
+                  value: /^[0-9.]+$/,
+                  message: "Your input is NaN.",
+                },
+              })}
+              defaultValue={selectedCurrency.rate.toString()}
+              error={Boolean(errors.czk_amount)}
+              errorMessage={errors.czk_amount?.message}
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={12}>
-          <SelectField
-            label={`Currency (${selectedCurrency.rate} CZK)`}
-            options={FLAGS.map((option) => (
-              <MenuItem key={option.name} value={option.code}>
-                {`${option.flag} ${option.code}`}
-              </MenuItem>
-            ))}
-            defaultValue={selectedCurrency.code}
-            {...register("code")}
-            error={errors.code}
-            onChange={onCodeChange}
-          />
-        </Grid>
-        <Grid item xs={12} md={12}>
-          <TextFieldComponent
-            label={"Amount (CZK)"}
-            type={"number"}
-            isPositiveNumber={true}
-            register={register("czk_amount", {
-              onChange: onCZKAmountChange,
-              pattern: {
-                value: /^[0-9.]+$/,
-                message: "Your input is NaN.",
-              },
-            })}
-            defaultValue={selectedCurrency.rate.toString()}
-            error={Boolean(errors.czk_amount)}
-            errorMessage={errors.czk_amount?.message}
-          />
-        </Grid>
-      </Grid>
+      </CustomPaper>
     </StyledConverterContainer>
   );
 };

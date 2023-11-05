@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSProperties } from "react";
 
 export type TData = {
   country: string;
@@ -14,6 +15,7 @@ export type TableHeaderProps = {
 
 export type CustomStyledTableProps = {
   children: React.ReactNode;
+  style?: CSSProperties;
 };
 
 export type TableProps = {

@@ -8,3 +8,15 @@ export const StyledAppContainer = styled.div`
     flex-direction: column;
   }
 `;
+
+export const StyledTitleText = styled.h1`
+  @media screen and (max-width: 900px) {
+    font-size: 2rem;
+  }
+`;
+
+export const StyledParagraphText = styled.p`
+  @media screen and (max-width: 900px) {
+    font-size: 0.8rem;
+  }
+`;

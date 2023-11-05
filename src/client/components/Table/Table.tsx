@@ -1,4 +1,4 @@
-import { Paper, Table, TableBody, TableContainer } from "@mui/material";
+import { Table, TableBody, TableContainer } from "@mui/material";
 import React from "react";
 import TableHeader from "./TableHead/TableHead";
 import { TableProps, TData } from "../../types/table";
@@ -6,13 +6,15 @@ import CustomTableCell from "./TableCell/TableCell";
 import CustomTableRow from "./TableRow/TableRow";
 import { renderCountryFlag } from "../../utils/converters";
 import { StyledTableContainer } from "./Table.styled";
+import { StyledParagraphText, StyledTitleText } from "../../App.styled";
+import CustomPaper from "../Paper/Paper";
 
 const ExchangeRateTable = ({ date, headerItems, rows }: TableProps) => {
   return (
     <StyledTableContainer>
-      <h1>Exchange Rate</h1>
-      <p>Last Update: {date}</p>
-      <Paper sx={{ width: "100%", overflow: "hidden" }}>
+      <StyledTitleText>Exchange Rate</StyledTitleText>
+      <StyledParagraphText>Last Update: {date}</StyledParagraphText>
+      <CustomPaper>
         <TableContainer sx={{ maxHeight: "60vh" }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHeader headerItems={headerItems} />
@@ -41,7 +43,7 @@ const ExchangeRateTable = ({ date, headerItems, rows }: TableProps) => {
             </TableBody>
           </Table>
         </TableContainer>
-      </Paper>
+      </CustomPaper>
     </StyledTableContainer>
   );
 };
