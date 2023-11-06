@@ -1,6 +1,6 @@
 import { styled, TableCell, tableCellClasses } from "@mui/material";
 import React from "react";
-import { CustomStyledTableProps } from "../../../types/table";
+import { CustomStyledComponentProps } from "../../../types/common";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -12,7 +12,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-const CustomTableCell = ({ children }: CustomStyledTableProps) => {
+const CustomTableCell = ({ children }: CustomStyledComponentProps) => {
   return <StyledTableCell>{children}</StyledTableCell>;
 };
 

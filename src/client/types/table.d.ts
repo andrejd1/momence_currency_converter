@@ -1,6 +1,3 @@
-import React from "react";
-import { CSSProperties } from "react";
-
 export type TData = {
   country: string;
   currency: string;
@@ -12,12 +9,6 @@ export type TData = {
 export type TableHeaderProps = {
   headerItems: string[];
 };
-
-export type CustomStyledTableProps = {
-  children: React.ReactNode;
-  style?: CSSProperties;
-};
-
 export type TableProps = {
   date: string;
   rows: TData[];

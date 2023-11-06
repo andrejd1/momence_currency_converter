@@ -1,6 +1,6 @@
 import { styled, TableRow } from "@mui/material";
 import React from "react";
-import { CustomStyledTableProps } from "../../../types/table";
+import { CustomStyledComponentProps } from "../../../types/common";
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
@@ -12,7 +12,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const CustomTableRow = ({ children }: CustomStyledTableProps) => {
+const CustomTableRow = ({ children }: CustomStyledComponentProps) => {
   return <StyledTableRow>{children}</StyledTableRow>;
 };
 
